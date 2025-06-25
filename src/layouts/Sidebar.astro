@@ -1,0 +1,109 @@
+---
+import ShowHideButton from "../components/ShowHideButton";
+
+import Header from "../components/sidebar/Header.astro";
+import Footer from "../components/sidebar/Footer.astro";
+import Widget from "../components/sidebar/Widget.astro";
+---
+
+<div
+	id="sidebar"
+	class="fixed left-0 z-99 h-screen w-2xs text-slate-50 transition-transform md:relative md:basis-1/3 md:translate-x-0! dark:bg-slate-950 [&:not(.show)]:-translate-x-full">
+	<div class="relative flex h-full flex-col">
+		<Header />
+
+		<div
+			class="custom-scrollbar flex-[1_1_0%] flex-col gap-5 overflow-y-scroll scroll-smooth p-3 *:rounded-xl *:bg-slate-950 *:p-1 *:dark:inset-ring *:dark:inset-ring-white/10">
+			<Widget titleWidget="Task tracker">
+				<p slot="contentWidget">
+					This is simple app use for tracker tasks every day need
+					<code class="rounded bg-slate-800 p-1 text-xs whitespace-nowrap">too-doo</code>
+				</p>
+				<p slot="contentWidget">
+					Base on my task-tracker from Roadmap Frontend Project - FE17. Check repo
+					<a
+						class="text-slate-600 transition hover:text-slate-400"
+						target="_blank"
+						href="https://pine1611.github.io/frontend-projects/17-task-tracker/public/"
+						>here</a
+					>
+				</p>
+			</Widget>
+
+			<Widget titleWidget="Tech Stacks">
+				<ul
+					slot="contentWidget"
+					class="item-center flex flex-wrap gap-2">
+					<li>
+						<a href="/">
+							<img
+								alt="NodeJS"
+								src="https://img.shields.io/badge/NodeJS-%20?logo=nodedotjs&logoColor=%235FA04E&labelColor=%23343434&color=%235FA04E"
+							/>
+						</a>
+					</li>
+					<li>
+						<a href="/">
+							<img
+								alt="Javascript"
+								src="https://img.shields.io/badge/Javascript-%20?logo=javascript&logoColor=%23F7DF1E&labelColor=%23343434&color=%23F7DF1E"
+							/>
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://astro.build/"
+							target="_blank">
+							<img
+								alt="Astro"
+								src="https://img.shields.io/badge/Astro-%20?logo=astro&logoColor=%23BC52EE&labelColor=2A2A2A&color=%23BC52EE"
+							/>
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://react.dev"
+							target="_blank">
+							<img
+								alt="React Dev"
+								src="https://img.shields.io/badge/React-%20?logo=react&logoColor=%2361DAFB&labelColor=%23343434&color=%2361DAFB"
+							/>
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://tailwindcss.com/"
+							target="_blank">
+							<img
+								alt="Tailwindcss"
+								src="https://img.shields.io/badge/TailwindCSS-%20?logo=tailwindcss&logoColor=%2306B6D4&labelColor=%23343434&color=%2306B6D4"
+							/>
+						</a>
+					</li>
+				</ul>
+			</Widget>
+
+			<Widget titleWidget="Knowledge and issues">
+				<span
+					slot="contentWidget"
+					class="mb-3 font-mono text-xs font-medium text-gray-500 dark:text-gray-400"
+					>knowledge</span
+				>
+				<p slot="contentWidget">
+					The purpose of this project is to help me practice building projects using Astro, React and
+					TailwindCSS.
+				</p>
+				<span
+					slot="contentWidget"
+					class="mb-3 font-mono text-xs font-medium text-gray-500 dark:text-gray-400"
+					>issues</span
+				>
+				<p slot="contentWidget">Updating</p>
+			</Widget>
+		</div>
+
+		<Footer />
+
+		<ShowHideButton client:only />
+	</div>
+</div>
