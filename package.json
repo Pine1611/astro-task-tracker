@@ -1,0 +1,31 @@
+{
+	"name": "tasks-tracker",
+	"version": "0.0.1",
+	"description": "A simple tasks tracker",
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/react": "^4.3.0",
+		"@tailwindcss/vite": "^4.1.10",
+		"astro": "^5.9.3",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"devDependencies": {
+		"prettier-plugin-astro": "^0.14.1",
+		"prettier-plugin-tailwindcss": "^0.6.12",
+		"tailwindcss": "^4.1.10"
+	},
+	"keywords": [
+		"astro",
+		"react",
+		"tasks-tracker"
+	],
+	"author": "I am Pine",
+	"license": "MIT"
+}
