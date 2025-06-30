@@ -11,19 +11,19 @@ const TaskTracker = () => {
 	const [task, setTask] = useState("");
 	const [isError, setIsError] = useState({ status: false, message: "" });
 
-	// useEffect(() => {
-	// 	handleCheckValue();
-	// }, [task]);
+	useEffect(() => {
+		handleEvent();
+	}, [task]);
 
 	function handleEvent(event) {
-		if (event.type === "keydown" || event.type === "click") {
+		if (event && (event.type === "keydown" || event.type === "click")) {
 			handleCheckValue();
 		}
 	}
 
 	function handleTextChange(event) {
 		setTask(event.target.value);
-		setIsError({ status: false, message: "" });
+		// setIsError({ status: false, message: "" });
 	}
 
 	function handleCheckValue() {
