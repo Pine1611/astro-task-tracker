@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CreateTask from "./CreateTask";
+import ListTask from "./ListTask";
 
 const ERROR_MESSAGES = {
 	str_empty: "Please enter task title!",
@@ -41,6 +42,8 @@ const TaskTracker = () => {
 				handleTextChange={handleTextChange}
 				isError={isError}
 			/>
+
+			<ListTask />
 		</>
 	);
 };

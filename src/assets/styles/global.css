@@ -13,3 +13,15 @@
 		background: var(--color-slate-600);
 	}
 }
+
+@layer components {
+	.todo {
+		@apply inline-flex items-center rounded-full border bg-blue-50 px-2 py-1 text-xs text-blue-600 ring-1 ring-blue-200/10;
+	}
+	.in-progress {
+		@apply inline-flex items-center rounded-full border bg-yellow-50 px-2 py-1 text-xs text-yellow-600 ring-1 ring-yellow-200/10;
+	}
+	.done {
+		@apply inline-flex items-center rounded-full border bg-green-50 px-2 py-1 text-xs text-green-600 ring-1 ring-green-200/10;
+	}
+}
