@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import AddTask from "./AddTask";
-import InputTask from "./InputTask";
+import CreateTask from "./CreateTask";
 
 const ERROR_MESSAGES = {
 	str_empty: "Please enter task title!",
@@ -23,7 +22,6 @@ const TaskTracker = () => {
 
 	function handleTextChange(event) {
 		setTask(event.target.value);
-		// setIsError({ status: false, message: "" });
 	}
 
 	function handleCheckValue() {
@@ -38,15 +36,11 @@ const TaskTracker = () => {
 
 	return (
 		<>
-			<div className="relative mb-6 w-full">
-				<InputTask
-					handleKeyDown={handleEvent}
-					handleTextChange={handleTextChange}
-					isError={isError}
-				/>
-
-				<AddTask handleClick={handleEvent} />
-			</div>
+			<CreateTask
+				handleEvent={handleEvent}
+				handleTextChange={handleTextChange}
+				isError={isError}
+			/>
 		</>
 	);
 };
