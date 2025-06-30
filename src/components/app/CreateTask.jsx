@@ -4,7 +4,7 @@ import InputTask from "./InputTask";
 const CreateTaskWrap = ({ children }) => {
 	return (
 		<>
-			<div className="relative mb-6 w-full">{children}</div>
+			<div className="relative mb-3 w-full">{children}</div>
 		</>
 	);
 };
