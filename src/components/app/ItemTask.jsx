@@ -2,7 +2,6 @@ const LabelTask = ({ id, title, status }) => {
 	const listStatus = ["todo", "in-progress", "done"];
 
 	const classStatus = listStatus.find((item) => item === status);
-	console.log(classStatus);
 
 	return (
 		<>

@@ -23,6 +23,7 @@ const TaskTracker = () => {
 
 	function handleTextChange(event) {
 		setTask(event.target.value);
+		event.target.value === "" && setIsError({ status: false, message: "" });
 	}
 
 	function handleCheckValue() {
