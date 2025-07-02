@@ -16,12 +16,12 @@
 
 @layer components {
 	.todo {
-		@apply inline-flex items-center rounded-full border bg-blue-50 px-2 py-1 text-xs text-blue-600 ring-1 ring-blue-200/10;
+		@apply inline-flex items-center rounded-full border border-blue-200/80 bg-blue-50 px-2 py-1 text-xs text-blue-500;
 	}
 	.in-progress {
-		@apply inline-flex items-center rounded-full border bg-yellow-50 px-2 py-1 text-xs text-yellow-600 ring-1 ring-yellow-200/10;
+		@apply inline-flex items-center rounded-full border border-green-200/80 bg-green-50 px-2 py-1 text-xs text-green-500;
 	}
 	.done {
-		@apply inline-flex items-center rounded-full border bg-green-50 px-2 py-1 text-xs text-green-600 ring-1 ring-green-200/10;
+		@apply inline-flex items-center rounded-full border border-yellow-200/80 bg-yellow-50 px-2 py-1 text-xs text-yellow-500;
 	}
 }

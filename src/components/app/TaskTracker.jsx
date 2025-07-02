@@ -7,32 +7,68 @@ const ERROR_MESSAGES = {
 	str_too_short: "Title task too short!",
 };
 
+const DEFAULT_TASKS = [
+	{
+		id: 1,
+		title: "Learn something everyday",
+		status: "todo",
+		createdAt: "12/4/2024, 8:48:29 AM",
+		updatedAt: "12/4/2024, 8:48:29 AM",
+	},
+	{
+		id: 2,
+		title: "Divide it!",
+		status: "in-progress",
+		createdAt: "12/4/2024, 8:48:29 AM",
+		updatedAt: "12/4/2024, 8:48:29 AM",
+	},
+	{
+		id: 3,
+		title: "Do it step by step!",
+		status: "done",
+		createdAt: "12/4/2024, 8:48:29 AM",
+		updatedAt: "12/4/2024, 8:48:29 AM",
+	},
+];
+
 const TaskTracker = () => {
-	const [task, setTask] = useState("");
+	const [task, setTask] = useState(null);
+	const [listTask, setListTask] = useState(DEFAULT_TASKS);
 	const [isError, setIsError] = useState({ status: false, message: "" });
 
 	useEffect(() => {
-		handleEvent();
+		handleCheckValue();
 	}, [task]);
 
 	function handleEvent(event) {
-		if (event && (event.type === "keydown" || event.type === "click")) {
-			handleCheckValue();
+		if (event && (event.key === "Enter" || event.type === "click")) {
+			if (task == null) {
+				setTask("");
+			} else {
+				// begin add task
+			}
 		}
 	}
 
 	function handleTextChange(event) {
-		setTask(event.target.value);
-		event.target.value === "" && setIsError({ status: false, message: "" });
+		const valueInput = event.target.value;
+		setTask(valueInput.toString().trim());
 	}
 
 	function handleCheckValue() {
-		if (task === "") {
-			setIsError({ status: true, message: ERROR_MESSAGES.str_empty });
-		} else if (task.length <= 3) {
-			setIsError({ status: true, message: ERROR_MESSAGES.str_too_short });
-		} else {
-			setIsError({ status: false, message: "" });
+		if (task != null) {
+			if (task === "") {
+				setIsError({ status: true, message: ERROR_MESSAGES.str_empty });
+			} else {
+				if (task.length <= 3) {
+					setIsError({
+						status: true,
+						message: ERROR_MESSAGES.str_too_short,
+					});
+				} else {
+					setIsError({ status: false, message: "" });
+				}
+			}
 		}
 	}
 
@@ -44,7 +80,7 @@ const TaskTracker = () => {
 				isError={isError}
 			/>
 
-			<ListTask />
+			<ListTask tasks={listTask} />
 		</>
 	);
 };
