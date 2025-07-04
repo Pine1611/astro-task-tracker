@@ -32,42 +32,53 @@ const DEFAULT_TASKS = [
 ];
 
 const TaskTracker = () => {
-	const [task, setTask] = useState(null);
+	const [inputValue, setInputValue] = useState("");
 	const [listTask, setListTask] = useState(DEFAULT_TASKS);
 	const [isError, setIsError] = useState({ status: false, message: "" });
 
 	useEffect(() => {
 		handleCheckValue();
-	}, [task]);
+	}, [inputValue]);
 
 	function handleEvent(event) {
 		if (event && (event.key === "Enter" || event.type === "click")) {
-			if (task == null) {
-				setTask("");
-			} else {
-				// begin add task
+			if (!isError.status && inputValue.length > 3) {
+				let lastTask = listTask.at(-1);
+				const newTask = {
+					id: lastTask.id + 1,
+					title: inputValue.trim(),
+					status: "todo",
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				};
+
+				setListTask([...listTask, newTask]);
+				setInputValue("");
+			} else if (inputValue === "") {
+				setIsError({ status: true, message: ERROR_MESSAGES.str_empty });
 			}
 		}
 	}
 
 	function handleTextChange(event) {
-		const valueInput = event.target.value;
-		setTask(valueInput.toString().trim());
+		setInputValue(event.target.value);
 	}
 
 	function handleCheckValue() {
-		if (task != null) {
-			if (task === "") {
+		const value = inputValue.toString().trim();
+		if (value === "" && !isError.status) {
+			// check for first time before handle text changed... do nothing
+			setInputValue("");
+		} else {
+			if (value === "") {
 				setIsError({ status: true, message: ERROR_MESSAGES.str_empty });
+			} else if (value.length > 0 && value.length < 4) {
+				setIsError({
+					status: true,
+					message: ERROR_MESSAGES.str_too_short,
+				});
 			} else {
-				if (task.length <= 3) {
-					setIsError({
-						status: true,
-						message: ERROR_MESSAGES.str_too_short,
-					});
-				} else {
-					setIsError({ status: false, message: "" });
-				}
+				setIsError({ status: false, message: "" });
 			}
 		}
 	}
@@ -75,6 +86,7 @@ const TaskTracker = () => {
 	return (
 		<>
 			<CreateTask
+				inputValue={inputValue}
 				handleEvent={handleEvent}
 				handleTextChange={handleTextChange}
 				isError={isError}
