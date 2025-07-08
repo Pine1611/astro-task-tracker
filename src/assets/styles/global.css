@@ -19,9 +19,9 @@
 		@apply inline-flex items-center rounded-full border border-blue-200/80 bg-blue-50 px-2 py-1 text-xs text-blue-500;
 	}
 	.in-progress {
-		@apply inline-flex items-center rounded-full border border-green-200/80 bg-green-50 px-2 py-1 text-xs text-green-500;
+		@apply inline-flex items-center rounded-full border border-yellow-200/80 bg-yellow-50 px-2 py-1 text-xs text-yellow-500;
 	}
 	.done {
-		@apply inline-flex items-center rounded-full border border-yellow-200/80 bg-yellow-50 px-2 py-1 text-xs text-yellow-500;
+		@apply inline-flex items-center rounded-full border border-green-200/80 bg-green-50 px-2 py-1 text-xs text-green-500;
 	}
 }
