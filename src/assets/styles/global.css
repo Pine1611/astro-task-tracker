@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+	--breakpoint-xs: 32rem;
+}
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @utility custom-scrollbar {
