@@ -1,40 +1,21 @@
 import { useEffect, useState } from "react";
 import CreateTask from "./CreateTask";
 import ListTask from "./ListTask";
-
-const ERROR_MESSAGES = {
-	str_empty: "Please enter task title!",
-	str_too_short: "Title task too short!",
-};
-
-const DEFAULT_TASKS = [
-	{
-		id: 1,
-		title: "Learn something everyday",
-		status: "todo",
-		createdAt: "12/4/2024, 8:48:29 AM",
-		updatedAt: "12/4/2024, 8:48:29 AM",
-	},
-	{
-		id: 2,
-		title: "Divide it!",
-		status: "in-progress",
-		createdAt: "12/4/2024, 8:48:29 AM",
-		updatedAt: "12/4/2024, 8:48:29 AM",
-	},
-	{
-		id: 3,
-		title: "Do it step by step!",
-		status: "done",
-		createdAt: "12/4/2024, 8:48:29 AM",
-		updatedAt: "12/4/2024, 8:48:29 AM",
-	},
-];
+import {
+	DEFAULT_TASKS,
+	ERROR_MESSAGES,
+	TaskTrackerContext,
+} from "./utils/configs";
 
 const TaskTracker = () => {
 	const [inputValue, setInputValue] = useState("");
-	const [listTask, setListTask] = useState(DEFAULT_TASKS);
 	const [isError, setIsError] = useState({ status: false, message: "" });
+	const [listTask, setListTask] = useState(DEFAULT_TASKS);
+
+	const [inProgress, setInProgress] = useState(
+		listTask.filter((task) => task.status === "in-progress").length,
+	);
+	const [warning, setWarning] = useState("");
 
 	useEffect(() => {
 		handleCheckValue();
@@ -92,7 +73,14 @@ const TaskTracker = () => {
 				isError={isError}
 			/>
 
-			<ListTask tasks={listTask} />
+			<TaskTrackerContext.Provider
+				value={{
+					listData: [listTask, setListTask],
+					taskProgress: [inProgress, setInProgress],
+					msgWarning: [warning, setWarning],
+				}}>
+				<ListTask listTask={listTask} />
+			</TaskTrackerContext.Provider>
 		</>
 	);
 };
