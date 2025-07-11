@@ -21,6 +21,25 @@ const TaskTracker = () => {
 		handleCheckValue();
 	}, [inputValue]);
 
+	const sortBy = "status";
+	const statusOrder = {
+		"in-progress": 1,
+		todo: 2,
+		done: 3,
+	};
+	listTask.sort((a, b) => {
+		const statusA = statusOrder[a[sortBy]];
+		const statusB = statusOrder[b[sortBy]];
+
+		if (statusA < statusB) return -1;
+		if (statusA > statusB) return 1;
+
+		if (a.id < b.id) return -1;
+		if (a.id > b.id) return 1;
+
+		return 0;
+	});
+
 	function handleEvent(event) {
 		if (event && (event.key === "Enter" || event.type === "click")) {
 			if (!isError.status && inputValue.length > 3) {
