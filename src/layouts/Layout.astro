@@ -1,0 +1,59 @@
+---
+import Sidebar from "../layouts/Sidebar.astro";
+
+import "../assets/styles/global.css";
+---
+
+<html
+	lang="en"
+	data-theme="dark">
+	<head>
+		<meta
+			http-equiv="Content-Type"
+			content="text/html; charset=UTF-8"
+		/>
+		<meta charset="utf-8" />
+
+		<title>Task tracker - You've ripped a hole in the fabric of the internet. Love, from Pine!</title>
+
+		<meta
+			name="description"
+			content="Task tracker build with Astro, React and Tailwindcss"
+		/>
+		<meta
+			name="keywords"
+			content="astro, react, template, template-html-css, sass, responsive, responsive-desig, tailwindcss"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		/>
+		<meta
+			name="author"
+			content="Pine!"
+		/>
+		<link
+			rel="icon"
+			type="favicon"
+			href="/images/fav-ico.gif"
+		/>
+	</head>
+
+	<body class="w-full bg-slate-50">
+		<div class="flex flex-row">
+			<Sidebar />
+
+			<div
+				class="relative flex basis-full items-center justify-center overflow-auto px-4 py-20 md:basis-2/3 md:px-8">
+				<img
+					class="fixed top-0 left-0 -z-1 h-full w-full blur-[100px]"
+					src="/images/background.svg"
+					alt=""
+					fetchpriority="high"
+				/>
+
+				<slot />
+			</div>
+		</div>
+	</body>
+</html>

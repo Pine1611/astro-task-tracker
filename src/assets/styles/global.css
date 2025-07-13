@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+	--breakpoint-xs: 32rem;
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@utility custom-scrollbar {
+	&::-webkit-scrollbar-track {
+		background: var(--color-slate-900);
+	}
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: var(--color-slate-600);
+	}
+}
+
+@layer components {
+	.todo {
+		@apply inline-flex items-center rounded-full border border-blue-200/80 bg-blue-50 px-2 py-1 text-xs text-blue-500;
+	}
+	.in-progress {
+		@apply inline-flex items-center rounded-full border border-yellow-200/80 bg-yellow-50 px-2 py-1 text-xs text-yellow-500;
+	}
+	.done {
+		@apply inline-flex items-center rounded-full border border-green-200/80 bg-green-50 px-2 py-1 text-xs text-green-500;
+	}
+}
