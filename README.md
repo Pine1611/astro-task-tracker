@@ -9,7 +9,7 @@ A simple task tracker
 
 ## Tracklogs
 
-    - [**2025-07-15**]: When set task to done => create new task, the id will increase from task set done [CHECKING 🐛]
+    - [**2025-07-15**]: When set task to done => create new task, the id will increase from task set done [🐛][fixed]
 
 ## License
 
