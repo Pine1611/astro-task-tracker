@@ -21,31 +21,15 @@ const TaskTracker = () => {
 		handleCheckValue();
 	}, [inputValue]);
 
-	const sortBy = "status";
-	const statusOrder = {
-		"in-progress": 1,
-		todo: 2,
-		done: 3,
-	};
-	listTask.sort((a, b) => {
-		const statusA = statusOrder[a[sortBy]];
-		const statusB = statusOrder[b[sortBy]];
-
-		if (statusA < statusB) return -1;
-		if (statusA > statusB) return 1;
-
-		if (a.id < b.id) return -1;
-		if (a.id > b.id) return 1;
-
-		return 0;
-	});
-
 	function handleEvent(event) {
 		if (event && (event.key === "Enter" || event.type === "click")) {
 			if (!isError.status && inputValue.length > 3) {
 				let lastTask = listTask.at(-1);
+
+				// set default id if list empty
+				let newID = lastTask ? lastTask.id + 1 : 1;
 				const newTask = {
-					id: lastTask.id + 1,
+					id: newID,
 					title: inputValue.trim(),
 					status: "todo",
 					createdAt: new Date(),
@@ -98,7 +82,7 @@ const TaskTracker = () => {
 					taskProgress: [inProgress, setInProgress],
 					msgWarning: [warning, setWarning],
 				}}>
-				<ListTask listTask={listTask} />
+				<ListTask />
 			</TaskTrackerContext.Provider>
 		</>
 	);
