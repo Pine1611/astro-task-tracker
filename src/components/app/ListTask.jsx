@@ -10,6 +10,29 @@ const ListTask = () => {
 	const [inProgress] = taskProgress;
 	const [warning] = msgWarning;
 
+	// sort data for the listing
+	const sortBy = "status";
+	const statusOrder = {
+		"in-progress": 1,
+		todo: 2,
+		done: 3,
+	};
+	// create new list for sort => avoid affecting the list data
+	let sortedList = [...listTask];
+	// begin sort
+	sortedList.sort((a, b) => {
+		const statusA = statusOrder[a[sortBy]];
+		const statusB = statusOrder[b[sortBy]];
+
+		if (statusA < statusB) return -1;
+		if (statusA > statusB) return 1;
+
+		if (a.id < b.id) return -1;
+		if (a.id > b.id) return 1;
+
+		return 0;
+	});
+
 	return (
 		<>
 			<div>
@@ -30,7 +53,7 @@ const ListTask = () => {
 			</div>
 
 			<ul className="w-full">
-				{listTask.map((item, index) => (
+				{sortedList.map((item, index) => (
 					<ItemTask
 						key={index}
 						id={item.id}
