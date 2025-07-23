@@ -1,5 +1,5 @@
 import { ArrowTurnDownLeft } from "../Icons";
-import ButtonAction from "./Buttons";
+import ButtonAction from "../Buttons";
 import InputTask from "./InputTask";
 
 const CreateTaskWrap = ({ children }) => {
