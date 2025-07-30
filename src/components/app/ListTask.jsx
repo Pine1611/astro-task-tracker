@@ -1,37 +1,66 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ItemTask from "./ItemTask";
 import { TaskTrackerContext } from "./utils/configs";
+import { BarsArrowDown, BarsArrowUp } from "../Icons";
+import sortData from "./utils/sortData";
+// import Filter from "./Filter";
+// import SelectBox from "../SelectBox";
 
 const ListTask = () => {
-	const { listData, taskProgress, msgWarning } =
+	const { listData, taskProgress, msgWarning, statusFilter } =
 		useContext(TaskTrackerContext);
 
 	const [listTask] = listData;
 	const [inProgress] = taskProgress;
 	const [warning] = msgWarning;
+	// const [checkedStatus, setCheckedStatus] = statusFilter;
 
-	// sort data for the listing
-	const sortBy = "status";
-	const statusOrder = {
-		"in-progress": 1,
-		todo: 2,
-		done: 3,
-	};
+	const [sortConfig, setSortConfig] = useState([]);
+
+	function handleSort(columnName) {
+		let pendingChange = [...sortConfig];
+		let index = pendingChange.findIndex(
+			(config) => config.columnName === columnName,
+		);
+
+		if (index > -1) {
+			let currentSortOrder = pendingChange[index].sortOrder;
+			pendingChange.splice(index, 1);
+			if (currentSortOrder === "desc") {
+				pendingChange = [
+					...pendingChange,
+					{ columnName: columnName, sortOrder: "asc" },
+				];
+			}
+		} else {
+			pendingChange = [
+				...pendingChange,
+				{ columnName: columnName, sortOrder: "desc" },
+			];
+		}
+
+		setSortConfig([...pendingChange]);
+	}
+
+	function setupIconsSortBtn(columnName) {
+		const config = sortConfig.find(
+			(item) => item.columnName === columnName,
+		);
+
+		if (config) {
+			if (config.sortOrder === "asc") {
+				return <BarsArrowUp className="h-4 w-4 stroke-slate-500" />;
+			} else {
+				return <BarsArrowDown className="h-4 w-4 stroke-slate-500" />;
+			}
+		}
+
+		return null;
+	}
+
 	// create new list for sort => avoid affecting the list data
 	let sortedList = [...listTask];
-	// begin sort
-	sortedList.sort((a, b) => {
-		const statusA = statusOrder[a[sortBy]];
-		const statusB = statusOrder[b[sortBy]];
-
-		if (statusA < statusB) return -1;
-		if (statusA > statusB) return 1;
-
-		if (a.id < b.id) return -1;
-		if (a.id > b.id) return 1;
-
-		return 0;
-	});
+	sortData(sortedList, sortConfig);
 
 	return (
 		<>
@@ -50,6 +79,8 @@ const ListTask = () => {
 						{warning}
 					</p>
 				)}
+
+				{/* <Filter /> */}
 			</div>
 
 			<table className="w-full">
@@ -79,14 +110,14 @@ const ListTask = () => {
 					</tr>
 				</thead>
 				<tbody>
-				{sortedList.map((item, index) => (
-					<ItemTask
-						key={index}
-						id={item.id}
-						title={item.title}
-						status={item.status}
-					/>
-				))}
+					{sortedList.map((item, index) => (
+						<ItemTask
+							key={index}
+							id={item.id}
+							title={item.title}
+							status={item.status}
+						/>
+					))}
 				</tbody>
 			</table>
 		</>
