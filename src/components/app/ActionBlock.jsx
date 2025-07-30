@@ -7,9 +7,9 @@ import {
 	ShieldCheck,
 	Trash,
 } from "../Icons";
-import ButtonAction from "./Buttons";
 import { ERROR_MESSAGES, TaskTrackerContext } from "./utils/configs";
-import ModalConfirm from "./Modal";
+import ButtonAction from "../Buttons";
+import ModalConfirm from "../Modal";
 
 const StartTask = ({ handleStartTask }) => {
 	return (
@@ -81,7 +81,7 @@ const DeleteTask = ({
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-col items-center justify-center gap-2 border-t-1 border-slate-100 bg-slate-50 p-3 *:inset-1 *:cursor-pointer *:rounded *:border-1 *:px-5 *:py-2 *:text-xs *:font-semibold sm:flex-row">
+				<div className="flex items-center justify-center gap-2 border-t-1 border-slate-100 bg-slate-50 p-3 *:inset-1 *:cursor-pointer *:rounded *:border-1 *:px-5 *:py-2 *:text-xs *:font-semibold">
 					<button
 						className="border-slate-200 bg-white text-slate-800"
 						onClick={() => {
@@ -141,35 +141,37 @@ const ActionBlock = ({ status, id }) => {
 
 	return (
 		<>
-			{status === "done" ? (
-				<div className="cursor-pointer items-center justify-center rounded-sm bg-slate-100/80 p-1 transition hover:bg-slate-50">
-					<ShieldCheck className="h-4 w-4 stroke-green-500" />
-				</div>
-			) : (
-				<>
-					{status === "todo" && (
-						<>
-							<StartTask handleStartTask={handleStartTask} />
+			<div className="flex flex-nowrap items-center justify-center gap-2">
+				{status === "done" ? (
+					<div className="cursor-pointer items-center justify-center rounded-sm bg-slate-100/80 p-1 transition hover:bg-slate-50">
+						<ShieldCheck className="h-4 w-4 stroke-green-500" />
+					</div>
+				) : (
+					<>
+						{status === "todo" && (
+							<>
+								<StartTask handleStartTask={handleStartTask} />
 
-							<DeleteTask
-								handleDeleteTask={handleDelete}
-								handleConfirmDeleteTask={() =>
-									setOpenModal(true)
-								}
-								isOpen={openModal}
-								handleCloseModal={setOpenModal}
-							/>
-						</>
-					)}
+								<DeleteTask
+									handleDeleteTask={handleDelete}
+									handleConfirmDeleteTask={() =>
+										setOpenModal(true)
+									}
+									isOpen={openModal}
+									handleCloseModal={setOpenModal}
+								/>
+							</>
+						)}
 
-					{status === "in-progress" && (
-						<>
-							<CompleteTask handleComplete={handleComplete} />
-							<PauseTask handlePauseTask={handlePauseTask} />
-						</>
-					)}
-				</>
-			)}
+						{status === "in-progress" && (
+							<>
+								<CompleteTask handleComplete={handleComplete} />
+								<PauseTask handlePauseTask={handlePauseTask} />
+							</>
+						)}
+					</>
+				)}
+			</div>
 		</>
 	);
 };
