@@ -11,6 +11,8 @@ const TaskTracker = () => {
 	const [inputValue, setInputValue] = useState("");
 	const [isError, setIsError] = useState({ status: false, message: "" });
 	const [listTask, setListTask] = useState(DEFAULT_TASKS);
+	const [checkedStatus, setCheckedStatus] = useState({ isChecked: 0 });
+	// const [filterStatus, setFilterStatus] = useState("view-all");
 
 	const [inProgress, setInProgress] = useState(
 		listTask.filter((task) => task.status === "in-progress").length,
@@ -81,6 +83,8 @@ const TaskTracker = () => {
 					listData: [listTask, setListTask],
 					taskProgress: [inProgress, setInProgress],
 					msgWarning: [warning, setWarning],
+					statusFilter: [checkedStatus, setCheckedStatus],
+					// sortID: [sortByID, setSortByID],
 				}}>
 				<ListTask />
 			</TaskTrackerContext.Provider>

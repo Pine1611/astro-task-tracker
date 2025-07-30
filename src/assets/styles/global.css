@@ -28,4 +28,12 @@
 	.done {
 		@apply inline-flex items-center rounded-full border border-green-200/80 bg-green-50 px-2 py-1 text-xs text-green-500;
 	}
+
+	.slb__text {
+		width: 100%;
+		display: none;
+	}
+	.slb__input:checked + .slb__text {
+		display: block;
+	}
 }
