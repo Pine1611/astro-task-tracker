@@ -227,3 +227,43 @@ export const ChevronDown = (props) => {
 		</>
 	);
 };
+
+export const BarsArrowDown = (props) => {
+	return (
+		<>
+			<svg
+				{...props}
+				fill="none"
+				strokeWidth={1.5}
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				xmlns="http://www.w3.org/2000/svg">
+				<path
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					d="M3 4.5H17.25M3 9H12.75M3 13.5H8M17.25 9V21M17.25 21L13.5 17.25M17.25 21L21 17.25"
+				/>
+			</svg>
+		</>
+	);
+};
+
+export const BarsArrowUp = (props) => {
+	return (
+		<>
+			<svg
+				{...props}
+				fill="none"
+				strokeWidth={1.5}
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				xmlns="http://www.w3.org/2000/svg">
+				<path
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					d="M3 4.5H17.25M3 9H12.75M3 13.5H8.25M13.5 12.75L17.25 9M17.25 9L21 12.75M17.25 9V21"
+				/>
+			</svg>
+		</>
+	);
+};

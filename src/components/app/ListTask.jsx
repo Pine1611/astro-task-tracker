@@ -35,7 +35,7 @@ const ListTask = () => {
 
 	return (
 		<>
-			<div>
+			<div className="relative w-full">
 				{inProgress > 0 && (
 					<p className="flex items-center justify-center gap-2 text-xs font-medium text-slate-600">
 						Total in-progress:
@@ -52,7 +52,33 @@ const ListTask = () => {
 				)}
 			</div>
 
-			<ul className="w-full">
+			<table className="w-full">
+				<thead className="border-b-2 border-slate-200">
+					<tr className="*:px-1 *:py-2 *:text-xs *:font-medium *:text-slate-400">
+						<th className="flex w-12 items-center gap-1 text-left transition hover:text-slate-500">
+							<div className="flex flex-row gap-1">
+								<span
+									className="cursor-pointer"
+									onClick={() => handleSort("id")}>
+									ID
+								</span>
+								<sup>{setupIconsSortBtn("id")}</sup>
+							</div>
+						</th>
+						<th className="w-8/10 transition hover:text-slate-500">
+							<div className="flex flex-row gap-1">
+								<span
+									className="cursor-pointer"
+									onClick={() => handleSort("title")}>
+									Tasks Title
+								</span>
+								<sup>{setupIconsSortBtn("title")}</sup>
+							</div>
+						</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
 				{sortedList.map((item, index) => (
 					<ItemTask
 						key={index}
@@ -61,7 +87,8 @@ const ListTask = () => {
 						status={item.status}
 					/>
 				))}
-			</ul>
+				</tbody>
+			</table>
 		</>
 	);
 };
