@@ -9,6 +9,8 @@ const ERROR_MESSAGES = {
 	task_inprogress: "Can't delete task in-progress, pls stop this task!",
 };
 
+const STATUS_TASK = ["view-all", "todo", "in-progress", "done"];
+
 const DEFAULT_TASKS = [
 	{
 		id: 1,
@@ -33,4 +35,4 @@ const DEFAULT_TASKS = [
 	},
 ];
 
-export { ERROR_MESSAGES, DEFAULT_TASKS };
+export { ERROR_MESSAGES, DEFAULT_TASKS, STATUS_TASK };
